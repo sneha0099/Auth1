@@ -1,6 +1,6 @@
-import React ,{ useState, useContext } from "react";
+import React ,{ useState, useContext, useEffect} from "react";
 import axios from "axios";
-import { UserContext } from "../Context/UserContext";
+import { UserContext, } from "../Context/UserContext";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -15,9 +15,16 @@ function Register() {
   const {userDetails, setUserDetails} = useContext(UserContext);
   const {email, setEmail} = useContext(UserContext)
 
+  console.log(email , 'reg');
+  
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  
+  useEffect(() => {
+    console.log("Updated context in Register after setting:", userDetails, email);
+  }, [userDetails, email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,10 +32,12 @@ function Register() {
       const response = await axios.post("http://localhost:5000/api/auth/register", formData);
       setUserDetails(response.data.data.user);
       setEmail(response.data.data.user.email);
-      console.log('contextcomponent register', userDetails);
+      console.log("Context updated in Register:", userDetails, email);
+      console.log("API response:", response.data.data.user); // Logs the correct user data
+
       
       setMessage(response.data.message);
-
+      // window.location.href = "/verify-otp";
     } catch (error) {
       setMessage(error.response?.data?.message || "Registration failed");
     }

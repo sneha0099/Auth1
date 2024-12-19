@@ -10,9 +10,15 @@ function Verify() {
   const [isResending, setIsResending] = useState(false)
 
   const {userDetails} = useContext(UserContext)
+  const {email} = useContext(UserContext)
+
+
+useEffect(() => {
+  console.log("User details in Verify component:", userDetails, email);
+}, [userDetails, email]);
  
   const userId = userDetails?._id
-  const email = userDetails?.email
+  //const email = userDetails?.email
 
   console.log(userDetails , 'verifypage');
   console.log(email , userId , 'data');

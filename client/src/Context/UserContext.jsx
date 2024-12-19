@@ -4,8 +4,8 @@ const UserContext = createContext();
 
 const UserContextProvider = ({ children }) => {
 
-    const [userDetails, setUserDetails] = useState();
-    const [email, setEmail] = useState();
+    const [userDetails, setUserDetails] = useState({});
+    const [email, setEmail] = useState('');
     
     console.log('context ' , userDetails);
     console.log('email' , email);

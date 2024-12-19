@@ -17,7 +17,7 @@ function App() {
   
 
   return (
-    <UserContextProvider>
+    
       <Router>
       <Routes>
         <Route path='/' element={<Home/>}/>
@@ -28,7 +28,7 @@ function App() {
         <Route path='/verify-otp' element={<Verify/>}/>
       </Routes>
     </Router>
-    </UserContextProvider>
+    
     
   )
 }
